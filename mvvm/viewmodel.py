@@ -8,26 +8,30 @@ class HelloWorldViewModel(QObject):
         super().__init__(parent)
         self._model = model
         self._model.dataChanged.connect(self.onDataChanged)
+        print("Data changed")
+
 
     @property
     def message(self):
+        print('message property called')
         return self._model.data(self._model.index(0), Qt.DisplayRole)
 
     @Slot(str)
     def setMessage(self, value):
-        print('test')
+        print("Setting message to " + value)
         self._model.setData(self._model.index(0), value, Qt.DisplayRole)
 
     @Slot(str)
-    def resetMessage(self):
+    def resetMessage(self, message):
         print("Resetting message...")
-        self._model.setData(self._model.index(0), "Hello, World!", Qt.DisplayRole)
-        
+        self._model.setData(self._model.index(0), message, Qt.DisplayRole)
+
     @Slot()
     def onDataChanged(self):
-        self.changeMessage.emit(self._model.data(self._model.index(0), Qt.DisplayRole))
+        message = self._model.data(self._model.index(0), Qt.DisplayRole)
+        self.changeMessage.emit(message)
+        print("onDataChanged: {}".format(message))
         
     @Slot(str)
     def onMessageChanged(self, message):
-        print(message)
-
+        print("onMessageChanged: {}".format(message))

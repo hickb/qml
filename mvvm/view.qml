@@ -23,13 +23,15 @@ ApplicationWindow {
                 }
         }
         Button {
+            id: button
             text: "Click Me"
             onClicked: helloWorldViewModel.setMessage("Goodbye!")
         }
     
         Button {
+            id: resetButton
             text: "Reset"
-            onClicked: helloWorldViewModel.resetMessage()
+            onClicked: helloWorldViewModel.resetMessage("Hello, World!")
         }
     }
 

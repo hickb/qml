@@ -1,3 +1,4 @@
+# main.py
 import sys
 from PySide2.QtCore import QUrl
 from PySide2.QtGui import QGuiApplication
