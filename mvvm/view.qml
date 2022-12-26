@@ -7,6 +7,7 @@ ApplicationWindow {
     height: 480
     visible: true
 
+
     ColumnLayout{ 
         anchors.fill: parent
         anchors.margins: 10
@@ -17,9 +18,8 @@ ApplicationWindow {
             height: 100
             color: "grey"
             Text {
-                text: ' test ' // helloWorldViewModel.message
+                text: helloWorldViewModel.message
                 font.pixelSize: 24
-                anchors.centerIn: parent
                 }
         }
         Button {
@@ -32,4 +32,5 @@ ApplicationWindow {
             onClicked: helloWorldViewModel.resetMessage()
         }
     }
+
 }

@@ -15,8 +15,14 @@ class HelloWorldViewModel(QObject):
 
     @Slot(str)
     def setMessage(self, value):
+        print('test')
         self._model.setData(self._model.index(0), value, Qt.DisplayRole)
 
+    @Slot(str)
+    def resetMessage(self):
+        print("Resetting message...")
+        self._model.setData(self._model.index(0), "Hello, World!", Qt.DisplayRole)
+        
     @Slot()
     def onDataChanged(self):
         self.changeMessage.emit(self._model.data(self._model.index(0), Qt.DisplayRole))
