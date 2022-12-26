@@ -15,13 +15,22 @@ ApplicationWindow {
         spacing: 10
      
         Rectangle {
-            height: 100
-            color: "grey"
+            height: 30
+            color: "black"
             Text {
                 text: helloWorldViewModel.message
-                font.pixelSize: 24
-                }
+                font.pixelSize: 16
+            }
+        }     
+        Rectangle {
+            height: 30
+            color: "black"
+            Text {
+                text: 'Hello, World!'
+                font.pixelSize: 16
+            }
         }
+
         Button {
             id: button
             text: "Click Me"

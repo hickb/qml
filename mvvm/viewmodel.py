@@ -13,11 +13,19 @@ class HelloWorldViewModel(QObject):
 
     @property
     def message(self):
+        ''' The message property. 
+        property that provides access to the message data in the model. 
+        It allows the view to retrieve the message from the view model 
+        and display it to the user.
+        '''
         print('message property called')
         return self._model.data(self._model.index(0), Qt.DisplayRole)
 
     @Slot(str)
     def setMessage(self, value):
+        ''' The setMessage method.
+        method that allows the view to set the message in the model.
+        '''    
         print("Setting message to " + value)
         self._model.setData(self._model.index(0), value, Qt.DisplayRole)
 
@@ -28,9 +36,9 @@ class HelloWorldViewModel(QObject):
 
     @Slot()
     def onDataChanged(self):
+        print("onDataChanged: {}".format(message))
         message = self._model.data(self._model.index(0), Qt.DisplayRole)
         self.changeMessage.emit(message)
-        print("onDataChanged: {}".format(message))
         
     @Slot(str)
     def onMessageChanged(self, message):
