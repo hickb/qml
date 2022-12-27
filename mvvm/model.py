@@ -28,8 +28,14 @@ class MessageModel(QAbstractListModel):
         return None
 
     def setData(self, index, value, role=Qt.EditRole):
-        print("setData")
-        if not index.isValid() or index.row() >= len(self._messages) or role != Qt.EditRole:
+        print("index:", index)
+        print("index.isValid():", index.isValid())
+        print("index.row():", index.row())
+        print('index.row() >= len(self._messages):', index.row() >= len(self._messages))
+        print("role:", role)
+        print("role != Qt.EditRole:", role != Qt.EditRole)
+        print(f"setData: index: {index} value: {value} role: {role}")
+        if not index.isValid() or index.row() >= len(self._messages) or role != Qt.ItemDataRole.DisplayRole:
             print("setData: index is NOT valid")
             return False
         print("setData: index is valid")
