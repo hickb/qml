@@ -13,9 +13,9 @@ class HelloWorldViewModel(QObject):
 
     @property
     def message(self):
-        ''' The message property. 
-        property that provides access to the message data in the model. 
-        It allows the view to retrieve the message from the view model 
+        ''' The message property.
+        property that provides access to the message data in the model.
+        It allows the view to retrieve the message from the view model
         and display it to the user.
         '''
         print('message property called')

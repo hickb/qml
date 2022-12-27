@@ -4,7 +4,7 @@ from PySide2.QtCore import QAbstractListModel, Qt
 class MessageModel(QAbstractListModel):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self._messages = ["Hello, World!", "Hi there!", "Goodbye!"]
+        self._messages = ["Hello, World !", "Hi there!", "Goodbye!"]
 
     def rowCount(self, parent=None) -> int:
         ''' Returns the number of rows the model holds. 
@@ -12,6 +12,15 @@ class MessageModel(QAbstractListModel):
         print(f'rowCount: {len(self._messages)}')
         return len(self._messages)
 
+    def message2(self):
+        ''' The message property.
+        property that provides access to the message data in the model.
+        It allows the view to retrieve the message from the view model
+        and display it to the user.
+        '''
+        print('message property called')
+        return self._model.data(self._model.index(0), Qt.DisplayRole)
+    
     def data(self, index, role=Qt.DisplayRole):
         ''' Returns the data stored under the given role for the item referred to by the index.
         '''
