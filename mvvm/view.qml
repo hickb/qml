@@ -3,6 +3,8 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import Hello 1.0
 import MessageModel 1.0
+// import DataProvider (Debugging) 1.0
+import Debugging 1.0
 
 ApplicationWindow {
     width: 640
@@ -11,35 +13,53 @@ ApplicationWindow {
     visible: true
     title: qsTr("Hi!")
     
-    HelloWorldViewModel {
-        id: my_helloWorldViewModel
-        Component.onCompleted: console.log(my_helloWorldViewModel)
+    HelloWorldViewModelTest {
+        id: myHelloWorld
+        Component.onCompleted: console.log(' --> ' + myHelloWorld.message())
     }
     
     MessageModel {
-        id: my_messageModel
-        Component.onCompleted: console.log(my_messageModel.message2)
+        id: messageModel
+        Component.onCompleted: console.log('messageModel.message2()')
     }
 
+    // adding a data provider for debugging purposes
+    DataProvider {
+        id: dataProvider
+    }   
+    
     ColumnLayout{ 
         anchors.fill: parent
         anchors.margins: 10
         width: 400
         spacing: 10
 
+        Button {
+            text: "Get Data"
+            onClicked: dataProvider.button_clicked()
+        }
+
+        Text {
+            text: dataProvider.get_message()
+            color: "black"
+        }
+        Text {
+            text: dataProvider.second_data
+            color: "black"
+        }
         Rectangle {
-            height: 30
+            height: 20
             color: "black"
             Text {  
-                text: 'custom_data'
+                text: myHelloWorld.message()
                 font.pixelSize: 16
             }
         }     
         Rectangle {
-            height: 30
+            height: 20
             color: "black"
             Text {
-                text: 'Something else!'
+                text: messageModel.message2()
                 font.pixelSize: 16
             }
         }

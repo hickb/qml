@@ -1,5 +1,5 @@
 # model.py
-from PySide2.QtCore import QAbstractListModel, Qt
+from PySide2.QtCore import QAbstractListModel, Qt, Slot
 
 class MessageModel(QAbstractListModel):
     def __init__(self, parent=None):
@@ -12,6 +12,7 @@ class MessageModel(QAbstractListModel):
         print(f'rowCount: {len(self._messages)}')
         return len(self._messages)
 
+    @Slot(result=str) 
     def message2(self):
         ''' The message property.
         property that provides access to the message data in the model.
@@ -19,7 +20,7 @@ class MessageModel(QAbstractListModel):
         and display it to the user.
         '''
         print('message property called')
-        return self._model.data(self._model.index(0), Qt.DisplayRole)
+        return "message 2 inside MessageModel class"
     
     def data(self, index, role=Qt.DisplayRole):
         ''' Returns the data stored under the given role for the item referred to by the index.
