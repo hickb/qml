@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
 import MyModule 1.0
 
 ApplicationWindow {
@@ -10,13 +11,18 @@ ApplicationWindow {
         id: dataProvider
     }
 
-    Button {
-        text: "Get Data"
-        onClicked: console.log(dataProvider.getData())
-    }
-    Text {
-        text: dataProvider.getData()
-        color: "black"
-    
+    ColumnLayout {
+        Button {
+            text: "Get Data"
+            onClicked: console.log(dataProvider.data2)
+        }
+        Text {
+            text: dataProvider.getData()
+            color: "black"
+        }
+        Text {
+            text: dataProvider.data2
+            color: "black"
+        }
     }
 }
