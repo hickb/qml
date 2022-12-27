@@ -14,7 +14,7 @@ ApplicationWindow {
     ColumnLayout {
         Button {
             text: "Get Data"
-            onClicked: console.log(dataProvider.data2)
+            onClicked: dataProvider.button_clicked()
         }
         Text {
             text: dataProvider.getData()

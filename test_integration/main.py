@@ -30,6 +30,10 @@ class DataProvider(QObject):
     # we can also use the notify parameter to emit the Signal when the data changes
     data2 = Property(str, getData2, setData, notify=dataChanged)
     
+    @Slot() # really important
+    def button_clicked(self):
+        print('button clicked!!!')
+    
 
 qmlRegisterType(DataProvider, "MyModule", 1, 0, "DataProvider")
 
