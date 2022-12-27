@@ -17,11 +17,11 @@ ApplicationWindow {
             onClicked: dataProvider.button_clicked()
         }
         Text {
-            text: dataProvider.getData()
+            text: dataProvider.get_message()
             color: "black"
         }
         Text {
-            text: dataProvider.data2
+            text: dataProvider.second_data
             color: "black"
         }
     }

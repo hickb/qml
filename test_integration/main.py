@@ -14,21 +14,21 @@ class DataProvider(QObject):
 
     # we need to use the Slot decorator to expose the method to QML
     @Slot(result=str) 
-    def getData(self):
+    def get_message(self):
         return "current data"
 
-    def getData2(self):
+    def get_message_second_method(self):
         return self._data
 
-    def setData(self, data):
+    def set_data_generic(self, data):
         self._data = data
 
     # ths is the way to expose a property to QML
     # instead of using the @Property decorator, we can use the Property class
-    data2 = Property(str, getData2, setData)
+    second_data = Property(str, get_message_second_method, set_data_generic)
     
     # we can also use the notify parameter to emit the Signal when the data changes
-    data2 = Property(str, getData2, setData, notify=dataChanged)
+    second_data = Property(str, get_message_second_method, set_data_generic, notify=dataChanged)
     
     @Slot() # really important
     def button_clicked(self):
