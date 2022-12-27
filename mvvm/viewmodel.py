@@ -36,7 +36,7 @@ class HelloWorldViewModel(QObject):
 
     @Slot()
     def onDataChanged(self):
-        print("onDataChanged: {}".format(message))
+        print(f"onDataChanged: {self}")
         message = self._model.data(self._model.index(0), Qt.DisplayRole)
         self.changeMessage.emit(message)
         
