@@ -10,13 +10,53 @@ ApplicationWindow {
 
     MyModel {
         id: myModel
+        Component.onCompleted: console.log(myModel.get_elements())
+        
     }
 
-    ListView {
-        anchors.fill: parent
-        model: myModel
-        delegate: Text { text: myModel.count() }
+    Column {
+        id: container
+        spacing: 10
+
+        Repeater {
+            model: myModel
+            delegate: Text { text: myModel.get_elements() }
+        }
     }
+
+    Rectangle {
+        width: 180; height: 200
+
+        Component {
+            id: contactDelegate
+            Item {
+                width: 180; height: 40
+                Column {
+                    Text { text: '<b>Name:</b> ' + myModel.get(index) }
+                    Text { text: '<b>Number:</b> ' + myModel.get_elements() }
+                }
+            }
+        }
+
+        ListView {
+            anchors.fill: parent
+            model: myModel
+            delegate: contactDelegate
+            highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
+            focus: true
+        }
+    }
+
+
+    // ListView {
+    //     anchors.fill: parent
+    //     height: 400
+    //     model: myModel
+    //     delegate: Text { 
+    //         width: parent.width
+    //         height: 30
+    //         text: myModel.get(index) }
+    // }
 
     Row {
         anchors.bottom: parent.bottom

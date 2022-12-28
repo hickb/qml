@@ -30,6 +30,13 @@ class MyModel(QObject):
     def get(self, index):
         return self.data(index)
 
+    @Slot(result=str)
+    def get_elements(self):
+        # convert list to string
+        items = [ str(item) for item in self._items ]
+        return str(items)
+        
+
 if __name__ == '__main__':
     app = QGuiApplication(sys.argv)
     engine = QQmlApplicationEngine()
@@ -39,4 +46,3 @@ if __name__ == '__main__':
     if not engine.rootObjects():
         sys.exit(-1)
     sys.exit(app.exec_())
-d
