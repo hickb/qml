@@ -9,6 +9,15 @@ data = [
     {"name": "Jane", "age": 35, "path_image": "/images/2.png", "city": "Paris"},
     {"name": "Harry", "age": 40, "path_image": "/images/3.png", "city": "New York"},
     {"name": "Wendy", "age": 45, "path_image": "/images/4.png", "city": "Tokyo"},
+    {"name": "Jane", "age": 35, "path_image": "/images/2.png", "city": "Paris"},
+    {"name": "Harry", "age": 40, "path_image": "/images/3.png", "city": "New York"},
+    {"name": "Wendy", "age": 45, "path_image": "/images/4.png", "city": "Tokyo"},
+    {"name": "Jane", "age": 35, "path_image": "/images/2.png", "city": "Paris"},
+    {"name": "Harry", "age": 40, "path_image": "/images/3.png", "city": "New York"},
+    {"name": "Wendy", "age": 45, "path_image": "/images/4.png", "city": "Tokyo"},
+    {"name": "Jane", "age": 35, "path_image": "/images/2.png", "city": "Paris"},
+    {"name": "Harry", "age": 40, "path_image": "/images/3.png", "city": "New York"},
+    {"name": "Wendy", "age": 45, "path_image": "/images/4.png", "city": "Tokyo"},
 ]
 
 class PythonModel(QAbstractListModel):

@@ -9,17 +9,21 @@ ApplicationWindow {
     title: qsTr("Hello World")
 
     Component.onCompleted: {
-        console.log("Python model: " + pythonModel)
+        if (pythonModel) {
+            console.log("Python model: " + pythonModel)
+        } else {
+            console.log("No python model found")
+        }
     }
 
     ListView {
         anchors.fill: parent
         model: pythonModel
         delegate: Column { 
-            Text { text: name }
-            Text { text: age }
-            Text { text: path_image }
-            Text { text: city }
+            Text { text: name ? name : "Name is undefined" }
+            Text { text: age ? age : "Age is undefined" }
+            Text { text: path_image ? path_image : "Path image is undefined" }
+            Text { text: city ? city : "City is undefined" }
         }
     }
 }
