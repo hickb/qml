@@ -1,20 +1,23 @@
-import QtQuick 2.15
+import QtQuick 2.12
+import QtQuick.Window 2.12
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Extras 1.4
 import QtQuick.Dialogs 1.2
+import QtQuick.Controls.Material 2.12
 
 
-ApplicationWindow {
+Window {
     title: "Qt Quick Controls Example"
     width: 1280
     height: 720
     visible: true
     // dark gray background
-    color: "#eaeaea"
+    color: "#bababa"
 
     ColumnLayout {
-        x: 300
+        x: 343
+        y: 93
         width: 300
         spacing: 10
 
@@ -35,7 +38,7 @@ ApplicationWindow {
                     opacity: enabled ? 1.0 : 0.3
                     // color: menuBarItem.highlighted ? "#ffffff" : "#21be2b"
                     color: menuBarItem.highlighted ? "#ffffff" : (menuBarItem.text == "Edit" ? "#ff0000" : "#21be2b")
-                    // lets replace the color for some of the more redish colors                  
+                    // lets replace the color for some of the more redish colors
 
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
@@ -63,7 +66,7 @@ ApplicationWindow {
                 }
             }
         }
-        
+
         TabBar {
             id: bar2
             width: parent.width
@@ -135,15 +138,18 @@ ApplicationWindow {
         }
 
         Rectangle {
-            width: parent.width + 200
+            width: 350
             height: textArea.height
             color: "white"
             radius: 0
             border.color: "grey"
             border.width: 1
+            clip: true
             TextArea {
-                width: 200
+                width: 342
                 id: textArea
+                x: 0
+                y: 0
                 height: 100
                 placeholderText: "In this example, a TextArea control is created with\n
                 a width of 200 and a height of 100. <b>The placeholderText<\b> property is \n
@@ -176,7 +182,8 @@ ApplicationWindow {
 
         TabBar {
             id: bar
-            width: parent.width
+            width: 400
+            contentWidth: 400
 
             Repeater {
                 model: ["First", "Second", "Third", "Fourth", "Fifth"]
@@ -189,10 +196,11 @@ ApplicationWindow {
         }
 
     }
-    
+
     ColumnLayout{
         width: 300
-        x: 900
+        x: 804
+        y: 100
         spacing: 10
 
         ColumnLayout {
@@ -295,14 +303,14 @@ ApplicationWindow {
                     //         }
                     //     }
                     //     onCurrentIndexChanged: console.log("TreeView index changed:", currentIndex)
-                    // }    
+                    // }
 
 
                     // Label
                     Label {
                         text: "Label"
                     }
-                    
+
 
                     // ScrollView
                     ScrollView {
@@ -391,19 +399,26 @@ ApplicationWindow {
                         }
                     }
 
+                    Slider {
+                        value: 50
+                        onValueChanged: console.log("Slider value changed:", value)
+                    }
+
 
 
         }
-    
+
 
     }
 
     ColumnLayout {
         width: 300
-        x: 30
+        x: 55
+        y: 65
         spacing: 10
-        
+
         ColumnLayout {
+            visible: true
             // Button
             Row {
                 Button {
@@ -419,7 +434,8 @@ ApplicationWindow {
             // ToggleButton
             ToggleButton {
                 text: "ToggleButton"
-                // onToggled: console.log("ToggleButton toggled:", checked)
+                onPressedChanged:  console.log("ToggleButton toggled:", checked)
+
             }
 
             // CheckBox
@@ -487,7 +503,7 @@ ApplicationWindow {
             Label {
                 text: "ProgressBar"
             }
-            
+
             // SpinBox
             SpinBox {
                 value: 50
@@ -506,6 +522,85 @@ ApplicationWindow {
                 onValueChanged: console.log("Dial value changed:", value)
             }
 
+            TextField {
+                placeholderText: "Enter text here"
+            }
+
         }
+    }
+
+    ToggleButton {
+        x: 182
+        y: 143
+        width: 46
+        height: 46
+        text: "ToggleButton"
+        onPressedChanged:  console.log("ToggleButton toggled:", checked)
+
+    }
+
+    ToggleButton {
+        x: 182
+        y: 195
+        width: 46
+        height: 46
+        text: "ToggleButton"
+        checked: true
+        onPressedChanged:  console.log("ToggleButton toggled:", checked)
+
+    }
+
+    Dial {
+        x: 234
+        y: 135
+        width: 62
+        height: 62
+        value: 50
+        onValueChanged: console.log("Dial value changed:", value)
+
+    }
+
+    Dial {
+        x: 234
+        y: 195
+        width: 62
+        height: 62
+        value: 50
+        onValueChanged: console.log("Dial value changed:", value)
+
+    }
+
+    Dial {
+        x: 234
+        y: 258
+        width: 62
+        height: 62
+        value: 50
+        onValueChanged: console.log("Dial value changed:", value)
+
+    }
+
+    Slider {
+        x: 508
+        y: 206
+        value: 0.5
+        onValueChanged: console.log("Slider value changed:", value)
+    }
+
+    Slider {
+        x: 508
+        y: 245
+        value: 50
+        onValueChanged: console.log("Slider value changed:", value)
+    }
+
+    Slider {
+        x: 508
+        y: 280
+        to: 1
+        from: 0
+        stepSize: 0.3
+        value: 0.9
+        onValueChanged: console.log("Slider value changed:", value)
     }
 }
