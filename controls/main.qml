@@ -18,7 +18,52 @@ ApplicationWindow {
         width: 300
         spacing: 10
 
+        MenuBar {
+            id: menuBar
 
+            Menu { title: qsTr("File") }
+            Menu { title: qsTr("Edit") }
+            Menu { title: qsTr("View") }
+            Menu { title: qsTr("Help") }
+
+            delegate: MenuBarItem {
+                id: menuBarItem
+
+                contentItem: Text {
+                    text: menuBarItem.text
+                    font: menuBarItem.font
+                    opacity: enabled ? 1.0 : 0.3
+                    // color: menuBarItem.highlighted ? "#ffffff" : "#21be2b"
+                    color: menuBarItem.highlighted ? "#ffffff" : (menuBarItem.text == "Edit" ? "#ff0000" : "#21be2b")
+                    // lets replace the color for some of the more redish colors                  
+
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                }
+
+                background: Rectangle {
+                    implicitWidth: 40
+                    implicitHeight: 40
+                    opacity: enabled ? 1 : 0.3
+                    color: menuBarItem.highlighted ? "#21be2b" : "transparent"
+                }
+            }
+
+            background: Rectangle {
+                implicitWidth: 40
+                implicitHeight: 40
+                color: "#ffffff"
+
+                Rectangle {
+                    color: "#21be2b"
+                    width: parent.width
+                    height: 1
+                    anchors.bottom: parent.bottom
+                }
+            }
+        }
+        
         TabBar {
             id: bar2
             width: parent.width
@@ -257,7 +302,7 @@ ApplicationWindow {
                     Label {
                         text: "Label"
                     }
-   
+                    
 
                     // ScrollView
                     ScrollView {
@@ -276,6 +321,76 @@ ApplicationWindow {
                             }
                         }
                     }
+
+                    Switch {
+                        id: control
+                        text: qsTr("Switch")
+
+                        indicator: Rectangle {
+                            implicitWidth: 48
+                            implicitHeight: 26
+                            x: control.leftPadding
+                            y: parent.height / 2 - height / 2
+                            radius: 13
+                            color: control.checked ? "#17a81a" : "#ffffff"
+                            border.color: control.checked ? "#17a81a" : "#cccccc"
+
+                            Rectangle {
+                                x: control.checked ? parent.width - width : 0
+                                width: 26
+                                height: 26
+                                radius: 13
+                                color: control.down ? "#cccccc" : "#ffffff"
+                                border.color: control.checked ? (control.down ? "#17a81a" : "#21be2b") : "#999999"
+                            }
+                        }
+
+                        contentItem: Text {
+                            text: control.text
+                            font: control.font
+                            opacity: enabled ? 1.0 : 0.3
+                            color: control.down ? "#17a81a" : "#21be2b"
+                            verticalAlignment: Text.AlignVCenter
+                            leftPadding: control.indicator.width + control.spacing
+                        }
+                    }
+
+                    ToolBar {
+                        RowLayout {
+                            anchors.fill: parent
+
+                            ToolButton {
+                                text: qsTr("Action 1")
+                            }
+                            ToolButton {
+                                text: qsTr("Action 2")
+                            }
+
+                            ToolSeparator {
+                                padding: vertical ? 10 : 2
+                                topPadding: vertical ? 2 : 10
+                                bottomPadding: vertical ? 2 : 10
+
+                                contentItem: Rectangle {
+                                    implicitWidth: parent.vertical ? 1 : 24
+                                    implicitHeight: parent.vertical ? 24 : 1
+                                    color: "#c3c3c3"
+                                }
+                            }
+
+                            ToolButton {
+                                text: qsTr("Action 3")
+                            }
+                            ToolButton {
+                                text: qsTr("Action 4")
+                            }
+
+                            Item {
+                                Layout.fillWidth: true
+                            }
+                        }
+                    }
+
 
 
         }
