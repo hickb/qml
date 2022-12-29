@@ -14,6 +14,10 @@ ApplicationWindow {
     ListView {
         anchors.fill: parent
         model: pythonModel
-        delegate: Text { text: name }
+        delegate: Column { 
+            Text { text: name }
+            Text { text: age }
+            Text { text: path_image }
+        }
     }
 }

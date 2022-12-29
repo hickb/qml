@@ -5,10 +5,10 @@ from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
 
 # Define the data structure in Python
 data = [
-    {"name": "Bob", "age": 30},
-    {"name": "Jane", "age": 35},
-    {"name": "Harry", "age": 40},
-    {"name": "Wendy", "age": 45},
+    {"name": "Bob", "age": 30, "path_image": "/images/1.png"},
+    {"name": "Jane", "age": 35, "path_image": "/images/2.png"},
+    {"name": "Harry", "age": 40, "path_image": "/images/3.png"},
+    {"name": "Wendy", "age": 45, "path_image": "/images/4.png"},
 ]
 
 # Create a Python model class that subclasses QAbstractListModel
@@ -19,7 +19,8 @@ class PythonModel(QAbstractListModel):
         # Define the role names
         self.role_names = {
             Qt.DisplayRole: b"name",
-            Qt.UserRole: b"user_name",
+            Qt.UserRole: b"age",
+            Qt.UserRole + 1: b"path_image",
         }
         
     def rowCount(self, parent=QModelIndex()):
@@ -32,7 +33,15 @@ class PythonModel(QAbstractListModel):
         if role == Qt.DisplayRole:
             row = index.row()
             # return self._data[row]["name"]
-            return f"{ self._data[row]['name']} {self._data[row]['age']}"
+            return self._data[row]['name']
+        elif role == Qt.UserRole:
+            row = index.row()
+            # return self._data[row]["name"]
+            return f"{self._data[row]['age']}"
+        elif role == Qt.UserRole + 1:
+            row = index.row()
+            return f"{self._data[row]['path_image']}"
+
 
     # Provide the role names for the QML view
     def roleNames(self):
