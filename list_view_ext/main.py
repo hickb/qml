@@ -11,8 +11,10 @@ data = [
     {"name": "Wendy", "age": 45, "path_image": "/images/4.png", "city": "Tokyo"},
 ]
 
-# Create a Python model class that subclasses QAbstractListModel
 class PythonModel(QAbstractListModel):
+    ''' A Python model that can be used with a QML ListView.
+
+    '''
     def __init__(self, data):
         super().__init__()
         self._data = data
@@ -23,37 +25,33 @@ class PythonModel(QAbstractListModel):
             Qt.UserRole + 1: b"path_image",
             Qt.UserRole + 2: b"city",
         }
-        
+
     def rowCount(self, parent=QModelIndex()):
+        ''' This method is used to define the number of rows in the model '''
         return len(self._data)
 
     def data(self, index, role=Qt.DisplayRole):
-        print("data called")
-        print(f'index: {index} role {role}')
-
+        if not index.isValid():
+            return
+        row = index.row()
         if role == Qt.DisplayRole:
-            row = index.row()
-            # return self._data[row]["name"]
             return self._data[row]['name']
         elif role == Qt.UserRole:
-            row = index.row()
-            # return self._data[row]["name"]
             return f"{self._data[row]['age']}"
         elif role == Qt.UserRole + 1:
-            row = index.row()
             return f"{self._data[row]['path_image']}"
         elif role == Qt.UserRole + 2:
-            row = index.row()
             return f"{self._data[row]['city']}"
 
-    # alternative to roleNames
-    # still complicated to understand the roleNames concept
+    def roleNames(self):
+        ''' This method is used to define the role names for the QML view '''
+        return self.role_names
+
+    # NOTE: this is an alternative to roleNames
+    # still complicated to make it work
     # def city(self, index):
     #     return self._data[index.row()]["city"]
 
-    # Provide the role names for the QML view
-    def roleNames(self):
-        return self.role_names
 
 # Create the QML application
 app = QGuiApplication(sys.argv)

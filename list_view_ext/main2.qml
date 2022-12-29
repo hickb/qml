@@ -9,7 +9,7 @@ ApplicationWindow {
     title: qsTr("Hello World")
 
     Component.onCompleted: {
-        console.log("Python model: " + pythonModel.data(1))
+        console.log("Python model: " + pythonModel)
     }
 
     ListView {
