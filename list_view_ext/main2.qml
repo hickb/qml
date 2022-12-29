@@ -1,4 +1,5 @@
-import QtQuick 2.6
+import QtQuick 2.5
+import QtQml 2.15
 import QtQuick.Controls 2.4
 
 ApplicationWindow {
@@ -18,6 +19,7 @@ ApplicationWindow {
             Text { text: name }
             Text { text: age }
             Text { text: path_image }
+            Text { text: city }
         }
     }
 }
